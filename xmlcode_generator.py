@@ -3,7 +3,8 @@ import cv2 as cv
 from lxml import etree
 import xml.etree.cElementTree as ET
 
-def write_xml(folder,img, save_dir, character):
+
+def write_xml(img, save_dir, character , unit):
     "function to create the xml files for the images"
     
     if not os.path.isdir(save_dir):
@@ -14,8 +15,8 @@ def write_xml(folder,img, save_dir, character):
     
     
     annotation  = ET.Element('annotation')
-    ET.SubElement(annotation,'folder').text = folder
-    ET.SubElement(annotation,'filename').text = img
+    ET.SubElement(annotation,'folder').text = "images"
+    ET.SubElement(annotation,'filename').text = unit
     ET.SubElement(annotation,'segmented').text = '0'
     
     size = ET.SubElement(annotation,'size')
@@ -49,11 +50,12 @@ save_dir = "annotations"
 
 count = 0 
 p =  65
-
+'''
 #CHANGE THE WORKPATHS AND DIRECTORIES FOR THE FONT PATH
-for i in range(11,37):
-    workPath = "F:\\Datasets\\EnglishFnt\\English\\Fnt\\"
-    folder ="Sample{0:03}\\img{0:03}".format(i)
+for i in range(3,4):
+    workPath = "F:\\Datasets\\EnglishFnt\\English\\Fnt\\Sample"
+    workPath1 = "F:\\Datasets\\EnglishFnt\\English\\Fnt\\Sample{0:03}".format(i)
+    folder ="{0:03}\\img{0:03}".format(i)
     
     
     for j in range(1,1017):
@@ -61,14 +63,25 @@ for i in range(11,37):
         #print(workPath+folder+image)
         
         if ( i<= 10):
-            write_xml(workPath+folder,workPath+folder+image,save_dir,i-1)
+            write_xml(workPath+folder+image,save_dir,i-1 ,  )
+            
             
         if ( i>10 ):
-            write_xml(workPath+folder,workPath+folder+image,save_dir,chr(p)) 
+            write_xml(workPath1,workPath+folder+image,save_dir,chr(p)) 
     
+    if ( i<=10 ):
+        print (  " DONE FOR  : "+  str(i-1) )
+        
     if( i >10 ):
         print ( " DONE FOR  : "+  chr(p) )
         p += 1
+        
+'''
+        
+newpath = "F:\\files\\"
+
+for i in range(27431,27432):
+    write_xml(newpath+"{0:06}.png".format(i),save_dir,'Z',"{0:06}.png".format(i))
             
             
     
