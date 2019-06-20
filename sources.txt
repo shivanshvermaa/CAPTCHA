@@ -6,3 +6,6 @@ https://github.com/thtrieu/darkflow
 
 //ACTUAL WEIGHTS FOLDER DOWNLOAD THE CONFIGURATIONS FROM THE REPO BELOW
 https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU
+
+//TRAINING COMMAND
+python flow --model F:\Work\Yolo\darkflow-master\cfg\yolo1.cfg --load F:\Work\Yolo\darkflow-master\bin\yolo.weights --train --annotation datset\annotations --dataset dataset\images --gpu 0.9 --epoch 300
